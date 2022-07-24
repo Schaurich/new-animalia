@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:new_animalia/pages/home_page.dart';
 import 'package:new_animalia/pages/login_page.dart';
 import 'package:new_animalia/services/auth_service.dart';
@@ -26,7 +25,7 @@ class _AuthCheckPageState extends State<AuthCheckPage> {
       return const LoginPage();
     } else {
       log(auth.usuario.toString());
-      return const HomePage();
+      return HomePage();
     }
   }
 
