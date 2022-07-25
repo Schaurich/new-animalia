@@ -1,4 +1,14 @@
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:new_animalia/helpers/datetime_helper.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'animal_model.g.dart';
+
+@JsonSerializable()
 class AnimalModel {
+  factory AnimalModel.fromJson(Map<String, dynamic> json) =>
+      _$AnimalModelFromJson(json);
   AnimalModel({
     this.nome,
     this.sexo,
@@ -18,7 +28,6 @@ class AnimalModel {
   String? personalidade;
   String? historia;
   String? image;
-  String? get idade => dataNascimento != null
-      ? dataNascimento!.difference(DateTime.now()).toString()
-      : null;
+  String? get idade => DateHelper.getYearsAndMonthFromDate(dataNascimento!);
+  Map<String, dynamic> toJson() => _$AnimalModelToJson(this);
 }
