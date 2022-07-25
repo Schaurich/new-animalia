@@ -23,7 +23,7 @@ Map<String, dynamic> _$AnimalModelToJson(AnimalModel instance) =>
     <String, dynamic>{
       'nome': instance.nome,
       'sexo': instance.sexo,
-      'dataNascimento': instance.dataNascimento?.toIso8601String(),
+      'dataNascimento': AnimalModel.dateTimeToJson(instance.dataNascimento),
       'porte': instance.porte,
       'cor': instance.cor,
       'personalidade': instance.personalidade,

@@ -9,6 +9,7 @@ part 'animal_model.g.dart';
 class AnimalModel {
   factory AnimalModel.fromJson(Map<String, dynamic> json) =>
       _$AnimalModelFromJson(json);
+
   AnimalModel({
     this.nome,
     this.sexo,
@@ -22,12 +23,25 @@ class AnimalModel {
 
   String? nome;
   String? sexo;
+
+  @JsonKey(toJson: dateTimeToJson, fromJson: dateTimeFromTimestamp)
   DateTime? dataNascimento;
+
+  DateTime? get dataNacimentoUTC => dataNascimento!.toUtc();
   String? porte;
   String? cor;
   String? personalidade;
   String? historia;
   String? image;
   String? get idade => DateHelper.getYearsAndMonthFromDate(dataNascimento!);
+
   Map<String, dynamic> toJson() => _$AnimalModelToJson(this);
+
+  static DateTime dateTimeFromTimestamp(DateTime? date) {
+    return date!.toLocal();
+  }
+
+  static String dateTimeToJson(DateTime? date) {
+    return date!.toUtc().toIso8601String();
+  }
 }

@@ -11,14 +11,14 @@ class HomePage extends StatefulWidget {
 
   UserRepository userRepository;
 
-  final List<AnimalModel> animalList = [
+  List<AnimalModel> animalList = [
     AnimalModel(
       nome: 'Dog1',
       image:
           'https://super.abril.com.br/wp-content/uploads/2018/05/filhotes-de-cachorro-alcanc3a7am-o-c3a1pice-de-fofura-com-8-semanas1.png?quality=90&strip=info&resize=850,567',
       dataNascimento: DateTime.now().subtract(
         const Duration(
-          days: 1470,
+          days: 1370,
         ),
       ),
     ),
@@ -43,7 +43,7 @@ class HomePage extends StatefulWidget {
       ),
     ),
   ];
-  late AnimalModel? animalModel = animalList[0];
+  late AnimalModel? animalModel = animalList.isEmpty ? null : animalList[0];
   List<AnimalModel>? get animalsList =>
       animalList.where((element) => element != animalModel).toList();
 
@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
     AuthService auth = Provider.of<AuthService>(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: () =>
-              widget.userRepository.saveAnimal(widget.animalModel!)),
+        onPressed: () => widget.userRepository.saveAnimal(widget.animalModel!),
+      ),
       appBar: AppBar(
         actions: [
           Padding(
